@@ -1,3 +1,8 @@
+<?php 
+
+session_start()
+
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
@@ -40,7 +45,7 @@
 
 <body>
 
-    <body>
+    <body onload="funcY()">
         <section class="container-fluid bg">
             <!-- <section class="row justify-content-center"> -->
             <section class="col-12 col-sm-6 col-md-3">
@@ -87,21 +92,60 @@
 
                     <br>
 
-                    <center><input style="background-color: #C733FF; font-family: 'Comic Sans MS', cursive, sans-serif;
-                            font-size: 17px; height: 45px; width: 150px;" type="submit" value="Create To Do"
-                            name="submit" class="a btn btn-primary btn-block" formaction="insertToDo.php">
-                    </center>
-
-
                     <?php
+                    $id = $_GET['id'];
+                    ?>
 
-include_once 'myConnection.php';
 
-$query = "SHOW TABLE STATUS LIKE 'lists'";
-$result = mysqli_query($conn, $query);
-$row = mysqli_fetch_assoc($result);
 
-?>
+
+                    <script>
+                    function funcY() {
+
+                        var y = '<?php echo $_GET["id"]; ?>';
+
+                        GetDetail(y);
+                        return;
+                    }
+
+                    function GetDetail(y) {
+                        if (y.length == 0) {
+                            document.getElementById("title").value = "";
+                            document.getElementById("task1").value = "";
+                            document.getElementById("task2").value = "";
+                            document.getElementById("task3").value = "";
+                            document.getElementById("task4").value = "";
+                            document.getElementById("task5").value = "";
+
+                            return;
+                        } else {
+
+                            var xmlhttp = new XMLHttpRequest();
+                            xmlhttp.onreadystatechange = function() {
+
+                                if (this.readyState == 4 &&
+                                    this.status == 200) {
+
+                                    var myObj = JSON.parse(this.responseText);
+
+                                    document.getElementById("title").value = myObj[0];
+                                    document.getElementById("task1").value = myObj[1];
+                                    document.getElementById("task2").value = myObj[2];
+                                    document.getElementById("task3").value = myObj[3];
+                                    document.getElementById("task4").value = myObj[4];
+                                    document.getElementById("task5").value = myObj[5];
+
+                                }
+                            };
+
+                            xmlhttp.open("GET", "viewAll3.php?id=" + y, true);
+
+                            xmlhttp.send();
+                        }
+                    }
+                    </script>
+
+
     </body>
 
 </html>

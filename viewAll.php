@@ -1,6 +1,6 @@
 <?php
 
-$mysqli = new mysqli("localhost", "root","", "dailyme");
+$mysqli = new mysqli("localhost","root","", "dailyme");
 
 if ($mysqli->connect_error) {
 die('Connect Error (' .
@@ -90,11 +90,6 @@ $mysqli->close();
         </center>
     </section>
 
-    <!-- <center><button style=" background-color: #C733FF; margin-top:10%; border: #C733FF; font-family: 'Comic Sans MS' ,
-                    cursive, sans-serif; font-size: 17px; width:17%; padding: 10px;" type="submit" class="btn btn-primary
-                                    btn-block" onclick="funcY()">Back to Home</button></center> -->
-
-
     </section>
     </section>
     </section>
@@ -111,19 +106,13 @@ $mysqli->close();
     </script>
 
     <script>
-    function funcY() {
-
-        window.location.href = "index.html";
-
-    }
-
     function funcID(x) {
 
 
         var id = x;
 
         window.location.href =
-            "http://localhost:8080/Daily-Me/viewll2.php?id=" + id + "";
+            "http://localhost:8080/Daily-Me/viewAll2.php?id=" + id + "";
 
 
     }
