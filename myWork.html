@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script> 
+function checkFunc(name)
+{
+ 
+if(name.value.length<10)
+{ 
+alert("Your to-do list must contain at least 10 characters!");
+return false;
+}
+else
+{ 
+return true;
+}
+}    
+</script> 
+</head>
+<body>
+<div class="mail">
+
+<form name="form1" action="#"> 
+Name: <input type='text' name='name'/></br></br>
+<input type="submit" name="submit" value="Submit" 
+onclick="checkFunc(document.form1.name, 8, 10)"/>
+</form>
+</div>
+</body>
+</html>
